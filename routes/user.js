@@ -279,7 +279,7 @@ router.get('/all',  passport.authenticate("jwt", {session: false}), (req, res, n
         //console.log(new Date(user[0].timeT));
         // res.status(200).send(users);
         User.find(
-          {$and : [{ _id: { "$in" : usr}, interest: { "$in" : user[0].interest}, myProf: user[0].intProf }, 
+          {$and : [{ _id: { "$in" : usr}, interest: { "$in" : user[0].interest}, myProf: user[0].intProf }, {timeT : { $gte: new Date() }},
           {$or: [ 
             { timeF : { $lte: new Date(user[0].timeF) }, timeT : { $gte: new Date(user[0].timeF) } },
             { timeF : { $lte: new Date(user[0].timeT) }, timeT : { $gte: new Date(user[0].timeT) } },
